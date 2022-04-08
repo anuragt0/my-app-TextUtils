@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 // useState is a hook 
 
 export default function TextForm(props) {
+    const [text, setText]=useState('')
+    const [emails, setEmail]=useState('')
     const handleUpClick = ()=>{
         let newText = text.toUpperCase();
         setText(newText);
@@ -14,7 +16,25 @@ export default function TextForm(props) {
         // To let us update the textarea by typing in
         setText(event.target.value)
     }
-    const [text, setText]=useState('')
+    const handleClearClick = ()=>{
+        setText('');
+    }
+    const showEmails = ()=>{
+        let emailsArr = [];
+        let arrr = text.split(' ');
+        arrr.forEach((word)=>{
+            if(word.includes('@gmail.com')){
+                emailsArr.push(word);
+            }
+        })
+        let newEmails = "";
+        emailsArr.forEach((emailll)=>{
+            newEmails +=emailll;
+            newEmails +=", ";
+        })
+        setEmail(newEmails);
+    }
+
     // text = "New Text"  //Wrong way to change the state
     // setText("New Text") //Correct way to change the state
    return (
@@ -26,6 +46,8 @@ export default function TextForm(props) {
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to upperCase</button>
         <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to lowerCase</button>
+        <button className="btn btn-primary mx-1" onClick={handleClearClick}>Clear text</button>
+        <button className="btn btn-primary mx-1" onClick={showEmails}>Show emails</button>
     </div>
 
     <div className="container my-2">
@@ -34,6 +56,8 @@ export default function TextForm(props) {
         <p>{0.008*text.split(" ").length} minutes read</p>
         <h2>Preview</h2>
         <p>{text}</p>
+        <h2>Emails</h2>
+        <p>{emails}</p>
     </div>
 
     </>
