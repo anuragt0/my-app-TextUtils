@@ -1,3 +1,5 @@
+// Entry point is index named page in public folder
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
