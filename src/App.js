@@ -47,6 +47,9 @@ function App() {
     <Alert alert = {alert}/>
     <div className="container my-3">
     <Routes>
+        {/* Use exact path...
+        /users -->Component 1
+        /users/home --> Componenet 2 */}
         <Route exact path='/about' element={<About/>}/>
         <Route exact path='/' element={<TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode}/>}/>
             
